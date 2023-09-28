@@ -12,7 +12,7 @@ public class Medium extends Difficulty
 {
     public Medium()
     {
-        super.guesses = 20;
+        super.guesses = 9;
         super.maxnum = 50;
         setAnswer();
     }

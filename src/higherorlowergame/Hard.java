@@ -12,7 +12,7 @@ public class Hard extends Difficulty
 {
     public Hard()
     {
-        super.guesses = 30;
+        super.guesses = 7;
         super.maxnum = 100;
         setAnswer();
     }

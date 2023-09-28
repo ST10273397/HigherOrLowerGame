@@ -13,7 +13,7 @@ public class Easy extends Difficulty
 {
     public Easy()
     {
-        super.guesses = 10;
+        super.guesses = 11;
         super.maxnum = 15;
         setAnswer();
     }

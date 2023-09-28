@@ -12,7 +12,7 @@ public class Impossible extends Difficulty
 {
    public Impossible()
     {
-        super.guesses = 50;
+        super.guesses = 3;
         super.maxnum = 500;
         setAnswer();
     }

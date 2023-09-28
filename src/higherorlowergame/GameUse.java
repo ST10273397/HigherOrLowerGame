@@ -47,11 +47,11 @@ public class GameUse
         System.out.println("SELECT YOUR DIFFICULTY");
         System.out.println("***************************************************");
         System.out.println(""" 
-                           (1) Easy - 10 Guesses, Numbers 1 - 15
-                           (2) Medium - 20 Guesses, Numbers 1 - 50
-                           (3) Hard - 30 Guesses, Numbers 1 - 100
-                           (4) Extra Hard - 40 Guesses, Numbers 1 - 200
-                           (5) Impossible - 50 Guesses, Numbers 1 - 500
+                           (1) Easy - 11 Guesses, Numbers 1 - 15
+                           (2) Medium - 9 Guesses, Numbers 1 - 50
+                           (3) Hard - 7 Guesses, Numbers 1 - 100
+                           (4) Extra Hard - 5 Guesses, Numbers 1 - 200
+                           (5) Impossible - 3 Guesses, Numbers 1 - 500
                            (6) Infinity - Unlimited Guesses, Numbers 1 -1000
                            """);
         while (true)
@@ -106,7 +106,7 @@ public class GameUse
                         playerans = scanner.nextInt();
                         validInput = true;
                         guesses[easy.getGuess() - numGuesses] = playerans;
-                        HigherOrLower(playerans, easy.getAnswer(), guesses);
+                        eHigherOrLower(playerans, easy.getAnswer(), guesses);
                         System.out.println("You have " + (numGuesses - 1) + " Guesses left!");
                     }
                 }
@@ -273,11 +273,39 @@ public class GameUse
         if (pans > rans)
         {
             System.out.println("You Need To Guess Lower. Try Again.");
+            lHint(rans, pans);
         } else
         {
             if (pans < rans)
             {
                 System.out.println("You Need To Guess Higher. Try Again.");
+                hHint(rans, pans);
+            } else
+            {
+                System.out.println("Congratulations!!! You Won!! You Guessed Correctly!!");
+                System.out.println("These Were Your Guesses ");
+                for (int value : guesses)
+                {
+                    System.out.print(value + " ");
+                }
+                Again();
+            }
+        }
+    }
+    //This Method Determine Whether The Guess The Player Gives Is Either Higher, Lower Or Is The Answer
+
+    public void eHigherOrLower(int pans, int rans, int[] guesses)
+    {
+        if (pans > rans)
+        {
+            System.out.println("You Need To Guess Lower. Try Again.");
+            eLHint(rans, pans);
+        } else
+        {
+            if (pans < rans)
+            {
+                System.out.println("You Need To Guess Higher. Try Again.");
+                eHHint(rans, pans);
             } else
             {
                 System.out.println("Congratulations!!! You Won!! You Guessed Correctly!!");
@@ -359,11 +387,13 @@ public class GameUse
         if (pans > rans)
         {
             System.out.println("You Need To Guess Lower. Try Again.");
+            lHint(rans, pans);
         } else
         {
             if (pans < rans)
             {
                 System.out.println("You Need To Guess Higher. Try Again.");
+                hHint(rans, pans);
             } else
             {
                 System.out.println("Congratulations!!! You Won!! You Guessed Correctly!!");
@@ -383,6 +413,89 @@ public class GameUse
         System.out.println();
         System.out.println("And The Answer Was " + ans);
         Again();
+    }
+//--------------------------------------------------------------------------------------//
+
+    public void hHint(int ans, int guess)
+    {
+        if ((ans - guess) < 10)
+        {
+            System.out.println("You Are Close");
+        } else
+        {
+            if ((ans - guess) < 25)
+            {
+                System.out.println("You Are Almost There");
+            } else
+            {
+                if ((ans - guess) < 50)
+                {
+                    System.out.println("You are In The 50 Range");
+                }
+            }
+        }
+    }
+//--------------------------------------------------------------------------------------//
+     public void eHHint(int ans, int guess)
+    {
+        if ((ans - guess) < 3)
+        {
+            System.out.println("You Are Close");
+        } else
+        {
+            if ((ans - guess) < 5)
+            {
+                System.out.println("You Are Almost There");
+            } else
+            {
+                if ((ans - guess) < 10)
+                {
+                    System.out.println("You Aren't Far Off");
+                }
+            }
+        }
+    }
+//--------------------------------------------------------------------------------------//
+
+    public void lHint(int ans, int guess)
+    {
+        if ((guess - ans) < 10)
+        {
+            System.out.println("You Are Close");
+        } else
+        {
+            if ((guess - ans) < 25)
+            {
+                System.out.println("You Are Almost There");
+            } else
+            {
+                if ((guess - ans) < 50)
+                {
+                    System.out.println("You are In The 50 Range");
+                }
+            }
+        }
+    }
+    //--------------------------------------------------------------------------------------//
+
+    public void eLHint(int ans, int guess)
+    {
+        if ((guess - ans) < 3)
+        {
+            System.out.println("You Are Close");
+        } else
+        {
+            if ((guess - ans) < 5)
+            {
+                System.out.println("You Are Almost There");
+            } else
+            {
+                if ((guess - ans) < 10)
+                {
+                    System.out.println("You Aren't Far Off");
+                }
+            }
+        }
     }
 }
 //----------------------------------------------------------------<<<<END OF FILE>>>--------------------------------------------------------//

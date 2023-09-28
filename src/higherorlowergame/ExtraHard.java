@@ -12,7 +12,7 @@ public class ExtraHard extends Difficulty
 {
     public ExtraHard()
     {
-        super.guesses = 40;
+        super.guesses = 5;
         super.maxnum = 200;
         setAnswer();
     }
