@@ -52,7 +52,8 @@ public class GameUse
                            (3) Hard - 7 Guesses, Numbers 1 - 100
                            (4) Extra Hard - 5 Guesses, Numbers 1 - 200
                            (5) Impossible - 3 Guesses, Numbers 1 - 500
-                           (6) Infinity - Unlimited Guesses, Numbers 1 -1000
+                           (6) Infinity - Unlimited Guesses, Numbers 1 - 1000
+                           (7) Custom - Your choice on how many guesses and between what numbers
                            """);
         while (true)
         {
@@ -77,6 +78,8 @@ public class GameUse
                 case "6" ->
                     Infinity();
 
+                case "7" ->
+                    Custom();
                 default ->
                 {
                     System.out.println("Please enter a number displayed");
@@ -292,6 +295,7 @@ public class GameUse
             }
         }
     }
+//-------------------------------------------------------------------------------------------------------------//
     //This Method Determine Whether The Guess The Player Gives Is Either Higher, Lower Or Is The Answer
 
     public void eHigherOrLower(int pans, int rans, int[] guesses)
@@ -496,6 +500,45 @@ public class GameUse
                 }
             }
         }
+    }
+//--------------------------------------------------------------------------------------//
+//This Method Is The Impossible Option Where The Player Have 1 Guess To Guess A Number Between 1 And 500
+
+    public void Custom()
+    {
+        System.out.println("Type In The Highest Number You Want To Guess: ");
+        Custom cus = new Custom();
+        System.out.println("Type In How Many Guesses You Want To Give Yourself: ");
+        cus.setGuess(scanner.nextInt());
+        cus.setAnswer();
+        int guesses[] = new int[cus.getGuess()];
+        for (int numGuesses = cus.getGuess(); numGuesses > 0; numGuesses--)
+        {
+            try
+            {
+                boolean validInput = false;
+                while (!validInput)
+                {
+                    {
+                        System.out.print("Enter your guess: ");
+                        playerans = scanner.nextInt();
+                        validInput = true;
+                        guesses[cus.getGuess() - numGuesses] = playerans;
+                        HigherOrLower(playerans, cus.getAnswer(), guesses);
+                        System.out.println("You have " + (numGuesses - 1) + " Guesses left!");
+                    }
+                }
+            } catch (InputMismatchException e)
+            {
+
+                {
+                    scanner.nextLine();
+                    System.out.println("Please Enter A Valid Number");
+
+                }
+            }
+        }
+        Lost(cus.getAnswer(), guesses);
     }
 }
 //----------------------------------------------------------------<<<<END OF FILE>>>--------------------------------------------------------//
